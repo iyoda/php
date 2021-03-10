@@ -40,6 +40,9 @@ RUN set -eux; \
 # Apache + PHP requires preforking Apache for best results
 RUN a2dismod mpm_event && a2enmod mpm_prefork
 
+# enable mod_rewrite
+RUN a2enmod rewrite
+
 # PHP files should be handled by PHP, and should be preferred over any other file type
 RUN { \
 		echo '<FilesMatch \.php$>'; \
