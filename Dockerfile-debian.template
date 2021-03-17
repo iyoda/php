@@ -236,6 +236,9 @@ COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
 RUN docker-php-ext-enable sodium
 
 {{ ) else "" end -}}
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
 {{
 	# https://github.com/docker-library/php/issues/865
 	# https://bugs.php.net/bug.php?id=76324
